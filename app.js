@@ -63,12 +63,16 @@ async function switchPage(viewName) {
 
     // Update UI Header
     const pageHeader = document.getElementById('page-header');
-    if (viewName === 'evidence' || viewName === 'team') {
-        pageHeader.classList.add('hidden');
-    } else {
-        pageHeader.classList.remove('hidden');
-        document.getElementById('current-tab-title').innerText = meta[viewName].title;
-        document.getElementById('current-tab-desc').innerText = meta[viewName].desc;
+    if (pageHeader) {
+        if (viewName === 'evidence' || viewName === 'team') {
+            pageHeader.classList.add('hidden');
+        } else {
+            pageHeader.classList.remove('hidden');
+            const titleEl = document.getElementById('current-tab-title');
+            const descEl = document.getElementById('current-tab-desc');
+            if (titleEl) titleEl.innerText = meta[viewName].title;
+            if (descEl) descEl.innerText = meta[viewName].desc;
+        }
     }
 
     // Load external component dynamically
@@ -286,6 +290,7 @@ function hideAlert() {
 
 // 6. INIT
 window.addEventListener('DOMContentLoaded', async () => {
+    await loadComponent('sidebar-container', './sidebar.html');
     initSidebarListeners();
     initFormListeners();
     switchPage('dashboard');
