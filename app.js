@@ -7,8 +7,8 @@ console.log("=> JS UTAMA BERHASIL DIPANGGIL BROWSER <=");
 // =========================================================================
 // 1. CONFIGURATION
 // =========================================================================
-const CF_WORKER_URL ="https://management-asset-bouncer.xanimeindo12.workers.dev";
-const API_KEY ="DSE-Aset-Project-Leannixx";
+const WORKER_URL = "https://management-asset-bouncer.xanimeindo12.workers.dev";
+const API_KEY = "DSE-Aset-Project-Leannixx";
 
 /**
  * Load HTML component into a container (GitHub Pages Adaptive)
