@@ -117,14 +117,14 @@ async function switchPage(viewName) {
 
     // Update Sidebar Navigation Active State
     document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20');
-        btn.classList.add('text-slate-400', 'hover:bg-slate-50');
+        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20', 'font-semibold');
+        btn.classList.add('text-slate-400', 'hover:bg-slate-800');
         const svg = btn.querySelector('svg');
         if (svg) svg.classList.remove('text-white', 'animate-bounce-small', 'text-teal-400');
     });
 
     document.querySelectorAll('.nav-sub-btn').forEach(btn => {
-        btn.classList.remove('text-indigo-600', 'bg-indigo-50', 'font-bold');
+        btn.classList.remove('bg-teal-600', 'text-white', 'font-semibold');
         btn.classList.add('text-slate-400', 'hover:bg-slate-800');
     });
 
@@ -132,7 +132,7 @@ async function switchPage(viewName) {
     if (activeBtn) {
         if (activeBtn.classList.contains('nav-btn')) {
             activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20', 'font-semibold');
-            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-50');
+            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800');
             const svg = activeBtn.querySelector('svg');
             if (svg) svg.classList.add('text-white', 'animate-bounce-small');
         } else if (activeBtn.classList.contains('nav-sub-btn')) {
@@ -208,6 +208,10 @@ function initSidebarListeners() {
                 if (isOpening) {
                     submenu.classList.add('open');
                     if (chevron) chevron.classList.add('rotate-180');
+
+                    // Auto-select sub-kategori pertama
+                    const firstSubBtn = submenu.querySelector('.nav-sub-btn');
+                    if (firstSubBtn) firstSubBtn.click();
                 }
             } else {
                 console.error(`Submenu dengan ID ${targetId} tidak ditemukan.`);
