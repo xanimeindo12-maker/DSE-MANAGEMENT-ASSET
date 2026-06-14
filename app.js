@@ -19,10 +19,11 @@ async function loadComponent(targetContainerId, fileName) {
         const currentPath = window.location.pathname;
         const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
 
-        // 2. Gabungkan jalur dengan nama file dan berikan suntikan anti-cache
+        // 2. Gabungkan jalur dengan nama file dan berikan suntikan anti-cache (Timestamp)
         const finalUrl = `${window.location.origin}${basePath}${fileName}?v=${new Date().getTime()}`;
 
-        const response = await fetch(finalUrl);
+        // 3. Fetch dengan header tambahan untuk memastikan browser tidak mengambil dari cache
+        const response = await fetch(finalUrl, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status} saat memuat ${fileName}`);
 
         const htmlText = await response.text();
