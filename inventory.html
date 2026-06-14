@@ -208,7 +208,13 @@
     let inventoryData = [];
 
     async function fetchInventoryData() {
-        const tbody = document.getElementById('inventory-table-body');
+        const tbody = document.querySelector("#inventory-table tbody");
+
+        // Tampilkan Loading State saat fetch berjalan
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8 text-slate-400 font-medium"><i class="animate-spin mr-2">⏳</i> Mengsinkronkan dengan Database...</td></tr>';
+        }
+
         try {
             const response = await fetch(`${CF_WORKER_URL}?action=get_inventory`, {
                 headers: { "X-API-KEY": API_KEY }
@@ -223,37 +229,42 @@
                 throw new Error(result.message);
             }
         } catch (error) {
-            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-12 text-red-500 font-medium">Gagal memuat data: ${error.message}</td></tr>`;
+            if (tbody) {
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-rose-500 font-semibold">⚠️ Gagal terhubung ke database: ${error.message}</td></tr>`;
+            }
         }
     }
 
     function renderTable(data) {
-        const tbody = document.getElementById('inventory-table-body');
+        const tbody = document.querySelector("#inventory-table tbody");
         const info = document.getElementById('pagination-info');
 
-        if (data.length === 0) {
+        if (!tbody) return;
+
+        if (!data || data.length === 0) {
             tbody.innerHTML = `<tr><td colspan="9" class="text-center py-12 text-slate-400 font-medium">Tidak ada data ditemukan.</td></tr>`;
-            info.innerText = `Menampilkan 0 Aset`;
+            if (info) info.innerText = `Menampilkan 0 Aset`;
             return;
         }
 
         tbody.innerHTML = data.map((item, index) => {
-            const statusClass = getStatusStyle(item.state);
+            // Pemetaan properti disesuaikan dengan header Google Sheets (CamelCase)
+            const statusClass = getStatusStyle(item.State);
             return `
                 <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
                     <td class="py-4 px-6 text-sm text-slate-600 font-medium">${index + 1}</td>
-                    <td class="py-4 px-6 text-sm text-slate-800 font-bold">${item.host_name || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.serial_number || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.assigned_to || 'N/A'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-800 font-bold">${item.HostName || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.SerialNumber || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.AssignedTo || 'N/A'}</td>
                     <td class="py-4 px-6 text-sm">
-                        <span class="px-3 py-1 text-xs font-bold rounded-full inline-flex items-center justify-center w-max shadow-sm ${statusClass}">${item.state}</span>
+                        <span class="px-3 py-1 text-xs font-bold rounded-full inline-flex items-center justify-center w-max shadow-sm ${statusClass}">${item.State || 'Unknown'}</span>
                     </td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.department || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.location || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-teal-600 font-bold italic">${item.warranty || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Department || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Lokasi || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-teal-600 font-bold italic">${item.WarrantyExpiry || '-'}</td>
                     <td class="py-4 px-6 text-sm text-center">
                         <div class="flex items-center justify-center gap-2">
-                            <button onclick="editAsset('${item.id}')" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all">
+                            <button onclick="editAsset('${item.ID}')" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                             </button>
                         </div>
@@ -262,7 +273,7 @@
             `;
         }).join('');
 
-        info.innerText = `Menampilkan ${data.length} Aset`;
+        if (info) info.innerText = `Menampilkan ${data.length} Aset`;
     }
 
     function getStatusStyle(state) {
@@ -274,10 +285,11 @@
     }
 
     function updateStats(data) {
-        document.getElementById('stat-total-aset').innerText = data.length;
-        document.getElementById('stat-ready-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'in use' || i.state?.toLowerCase() === 'ready').length;
-        document.getElementById('stat-maintenance-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'maintenance').length;
-        document.getElementById('stat-broken-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'broken').length;
+        if (!data) return;
+        if (document.getElementById('stat-total-aset')) document.getElementById('stat-total-aset').innerText = data.length;
+        if (document.getElementById('stat-ready-aset')) document.getElementById('stat-ready-aset').innerText = data.filter(i => i.State?.toLowerCase() === 'in use' || i.State?.toLowerCase() === 'ready').length;
+        if (document.getElementById('stat-maintenance-aset')) document.getElementById('stat-maintenance-aset').innerText = data.filter(i => i.State?.toLowerCase() === 'maintenance').length;
+        if (document.getElementById('stat-broken-aset')) document.getElementById('stat-broken-aset').innerText = data.filter(i => i.State?.toLowerCase() === 'broken').length;
     }
 
     function toggleModal(modalId) {
@@ -286,15 +298,18 @@
     }
 
     // Search Listener
-    document.getElementById('inventory-search').addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        const filtered = inventoryData.filter(item =>
-            item.host_name?.toLowerCase().includes(query) ||
-            item.serial_number?.toLowerCase().includes(query) ||
-            item.assigned_to?.toLowerCase().includes(query)
-        );
-        renderTable(filtered);
-    });
+    const searchInput = document.getElementById('inventory-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = inventoryData.filter(item =>
+                item.HostName?.toLowerCase().includes(query) ||
+                item.SerialNumber?.toLowerCase().includes(query) ||
+                item.AssignedTo?.toLowerCase().includes(query)
+            );
+            renderTable(filtered);
+        });
+    }
 
     // Action bar buttons (Injected by app.js)
     document.addEventListener('click', (e) => {
@@ -303,6 +318,19 @@
         }
     });
 
-    // Initial Load
-    fetchInventoryData();
+    // Trigger otomatis untuk meload data saat komponen aktif
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof fetchInventoryData === "function") {
+            fetchInventoryData();
+        } else if (typeof loadAssets === "function") {
+            loadAssets();
+        } else if (typeof initInventory === "function") {
+            initInventory();
+        }
+    });
+
+    // Fail-safe trigger: Jalankan langsung jika DOM sudah siap (untuk router dinamis)
+    if (typeof fetchInventoryData === "function") {
+        fetchInventoryData();
+    }
 </script>
