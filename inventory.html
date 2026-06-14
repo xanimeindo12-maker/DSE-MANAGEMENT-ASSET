@@ -111,6 +111,14 @@
                 </svg>
                 Ekspor
             </button>
+            <button id="btn-add-asset"
+                class="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-md shadow-teal-600/10 transition-all duration-200 cursor-pointer flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Tambah Perangkat</span>
+            </button>
         </div>
     </div>
 
@@ -232,9 +240,9 @@
         tbody.innerHTML = data.map((item, index) => {
             const statusClass = getStatusStyle(item.state);
             return `
-                <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
-                    <td class="py-4 px-6 text-sm text-slate-400 font-medium">${index + 1}</td>
-                    <td class="py-4 px-6 text-sm text-slate-800 font-semibold">${item.host_name || '-'}</td>
+                <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${index + 1}</td>
+                    <td class="py-4 px-6 text-sm text-slate-800 font-bold">${item.host_name || '-'}</td>
                     <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.serial_number || '-'}</td>
                     <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.assigned_to || 'N/A'}</td>
                     <td class="py-4 px-6 text-sm">
@@ -259,9 +267,9 @@
 
     function getStatusStyle(state) {
         const s = state?.toLowerCase();
-        if (s === 'ready' || s === 'in use') return 'bg-emerald-50 text-emerald-700 border border-emerald-100';
-        if (s === 'maintenance' || s === 'pending') return 'bg-amber-50 text-amber-700 border border-amber-100';
-        if (s === 'broken' || s === 'disposal') return 'bg-rose-50 text-rose-700 border border-rose-100';
+        if (s === 'ready' || s === 'in use') return 'px-3 py-1 text-xs font-bold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 inline-flex items-center';
+        if (s === 'maintenance' || s === 'pending') return 'px-3 py-1 text-xs font-bold rounded-full bg-amber-50 text-amber-700 border border-amber-100 inline-flex items-center';
+        if (s === 'broken' || s === 'disposal') return 'px-3 py-1 text-xs font-bold rounded-full bg-rose-50 text-rose-700 border border-rose-100 inline-flex items-center';
         return 'bg-slate-50 text-slate-600 border border-slate-100';
     }
 
