@@ -117,27 +117,27 @@ async function switchPage(viewName) {
 
     // Update Sidebar Navigation Active State
     document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20', 'font-semibold', 'animate-glow-teal');
-        btn.classList.add('text-slate-400', 'hover:bg-slate-800');
+        btn.classList.remove('bg-violet-500', 'text-white', 'shadow-lg', 'shadow-violet-500/20', 'font-semibold', 'animate-glow-lavender');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
         const svg = btn.querySelector('svg');
-        if (svg) svg.classList.remove('text-white', 'animate-bounce-small', 'text-teal-400');
+        if (svg) svg.classList.remove('text-white', 'animate-bounce-small', 'text-violet-500');
     });
 
     document.querySelectorAll('.nav-sub-btn').forEach(btn => {
-        btn.classList.remove('bg-teal-600', 'text-white', 'font-semibold', 'animate-glow-teal');
-        btn.classList.add('text-slate-400', 'hover:bg-slate-800');
+        btn.classList.remove('bg-violet-500', 'text-white', 'font-semibold', 'animate-glow-lavender');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
     });
 
     const activeBtn = document.getElementById(`btn-${viewName}`);
     if (activeBtn) {
         if (activeBtn.classList.contains('nav-btn')) {
-            activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20', 'font-semibold', 'animate-glow-teal');
-            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800');
+            activeBtn.classList.add('bg-violet-500', 'text-white', 'shadow-lg', 'shadow-violet-500/20', 'font-semibold', 'animate-glow-lavender');
+            activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
             const svg = activeBtn.querySelector('svg');
             if (svg) svg.classList.add('text-white', 'animate-bounce-small');
         } else if (activeBtn.classList.contains('nav-sub-btn')) {
-            activeBtn.classList.add('bg-teal-600', 'text-white', 'font-semibold', 'animate-glow-teal');
-            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800');
+            activeBtn.classList.add('bg-violet-500', 'text-white', 'font-semibold', 'animate-glow-lavender');
+            activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
         }
     }
 }
