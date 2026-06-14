@@ -1,0 +1,61 @@
+/* Base Styling */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Loading Spinner */
+.loader {
+    border-top-color: #10b981;
+    animation: spinner 1.5s linear infinite;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Content Transitions */
+#content-container {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Alert Banner Aesthetics */
+#alert-banner {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Small Bounce Animation */
+@keyframes bounce-small {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.animate-bounce-small {
+    animation: bounce-small 0.8s ease-in-out infinite;
+}
+
+/* Submenu Slide Animation */
+.submenu-animate {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.submenu-animate.open {
+    max-height: 500px;
+    /* Nilai yang cukup besar untuk menampung isi */
+    opacity: 1;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT DSE MANAGEMENT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1', // Indigo 500
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#f4f7fe] text-slate-800 font-sans">
+    <div class="flex h-screen overflow-hidden p-4 gap-6">
+        <!-- Sidebar Navigation Container -->
+        <div id="sidebar-container"
+            class="w-64 bg-white rounded-[32px] shadow-sm flex flex-col flex-shrink-0 overflow-hidden relative"></div>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+            <!-- Global Top Bar -->
+            <header class="flex justify-between items-center mb-6 mt-2 flex-shrink-0">
+                <!-- Empty left area / Global search placeholder -->
+                <div
+                    class="flex-1 bg-white rounded-full h-[60px] flex items-center px-6 shadow-sm border border-white max-w-4xl">
+                    <!-- Global search can be added here -->
+                </div>
+                <!-- Right area (Settings, Notifications) -->
+                <div class="ml-6 flex items-center gap-4">
+                    <button
+                        class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-slate-400 hover:text-indigo-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                    <button
+                        class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-slate-400 hover:text-indigo-600 transition-colors relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span
+                            class="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-[8px] text-white font-bold pb-px">5</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Title Area (Dynamic) -->
+            <div id="page-header" class="mb-6 flex justify-between items-end flex-shrink-0 pl-2 pr-2">
+                <div>
+                    <h2 id="current-tab-title" class="text-3xl leading-tight font-bold text-slate-800">Loading...</h2>
+                    <p id="current-tab-desc"
+                        class="text-xs font-semibold text-slate-500 uppercase tracking-widest mt-2">Mohon tunggu
+                        sebentar.</p>
+                </div>
+                <div id="page-actions" class="flex gap-3 items-center">
+                    <div id="loading-indicator"
+                        class="hidden flex items-center gap-2 text-indigo-600 font-semibold bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100">
+                        <div class="loader ease-linear rounded-full border-2 border-t-2 border-slate-200 h-4 w-4"></div>
+                        <span class="text-sm">Memproses Data...</span>
+                    </div>
+                    <!-- Actions specific to view will be placed here -->
+                    <div id="view-actions-container"></div>
+                </div>
+            </div>
+
+            <!-- Page Content Section -->
+            <section class="flex-1 overflow-y-auto pb-6 pl-2 pr-2">
+                <div id="alert-banner"
+                    class="hidden mb-6 p-4 rounded-xl border flex justify-between items-center shadow-sm">
+                    <span id="alert-message"></span>
+                    <button onclick="hideAlert()" class="text-lg font-bold">&times;</button>
+                </div>
+                <!-- Component Content Injection -->
+                <div id="content-container" class="transition-opacity duration-300 h-full">
+                    <!-- PAGE DASHBOARD -->
+                    <div id="page-dashboard" class="page-content flex flex-col gap-6">
+                        <div
+                            class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+                            <div>
+                                <h1 class="text-2xl font-bold text-slate-800 mb-1">Welcome back, Desktop Support
+                                    Engineer</h1>
+                                <p class="text-slate-500 text-sm">Here is the latest status of your IT DSE Operations.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div
+                                class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-5 transition-transform hover:-translate-y-1 duration-300">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Total
+                                        Assets</p>
+                                    <h3 class="text-3xl font-extrabold text-slate-800 leading-none">181</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE INVENTORY -->
+                    <div id="page-inventory" class="page-content hidden flex flex-col gap-6">
+                        <div class="bg-white rounded-[32px] shadow-sm border border-slate-100 overflow-hidden">
+                            <div class="p-6 flex justify-between items-center border-b border-slate-100 bg-white">
+                                <h3 class="font-bold text-slate-800 tracking-wide uppercase text-sm">MASTER INVENTORY
+                                    STREAM</h3>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr
+                                            class="bg-white text-[10px] uppercase tracking-widest text-slate-400 font-bold border-b border-slate-100">
+                                            <th class="p-4 pl-6">NO</th>
+                                            <th class="p-4">HOST NAME</th>
+                                            <th class="p-4">SERIAL NUMBER</th>
+                                            <th class="p-4">STATE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventory-table-body" class="text-xs font-semibold text-slate-600">
+                                        <tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                                            <td class="p-4 pl-6 text-slate-400">1</td>
+                                            <td class="p-4 text-slate-800">IT-PC-TAF01</td>
+                                            <td class="p-4 text-slate-500">SN-9812739218</td>
+                                            <td class="p-4"><span
+                                                    class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-md text-[10px] font-bold">IN
+                                                    USE</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE ACCESSORIES -->
+                    <div id="page-accessories" class="page-content hidden">
+                        <form data-sheet="Accessories"
+                            class="bg-white shadow-sm border border-slate-200 rounded-2xl p-8 space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Komponen /
+                                        Aksesoris</label>
+                                    <input type="text" name="item_name" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah</label>
+                                    <input type="number" name="quantity" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="bg-emerald-600 text-white font-bold py-3 px-10 rounded-xl">Simpan
+                                Inventaris</button>
+                        </form>
+                    </div>
+
+                    <!-- PAGE BORROWINGS -->
+                    <div id="page-borrowings" class="page-content hidden">
+                        <form data-sheet="Borrowings"
+                            class="bg-white shadow-sm border border-slate-200 rounded-2xl p-8 space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Peminjam</label>
+                                    <input type="text" name="borrower_name" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Barang</label>
+                                    <input type="text" name="asset_borrowed" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="bg-emerald-600 text-white font-bold py-3 px-10 rounded-xl">Catat
+                                Peminjaman</button>
+                        </form>
+                    </div>
+
+                    <!-- PAGE DAILYLOGS -->
+                    <div id="page-dailylogs" class="page-content hidden flex flex-col gap-6">
+                        <div
+                            class="bg-white rounded-[32px] shadow-sm border border-slate-100 overflow-hidden min-h-[400px]">
+                            <div class="p-6 flex justify-between items-center border-b border-slate-100 bg-white">
+                                <h3 class="font-bold text-slate-800 tracking-wide uppercase text-sm">MASTER ACTIVITY
+                                    STREAM</h3>
+                            </div>
+                            <div class="p-12 text-center text-slate-500">Tidak ada aktivitas harian yang ditemukan.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE MAINTENANCE -->
+                    <div id="page-maintenance" class="page-content hidden">
+                        <form data-sheet="Maintenance"
+                            class="bg-white shadow-sm border border-slate-200 rounded-2xl p-8 space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Aset Dalam
+                                    Perawatan</label>
+                                <input type="text" name="maintenance_asset" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                            </div>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Tanggal</label>
+                                    <input type="date" name="schedule_date" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Tipe Service</label>
+                                    <select name="service_type"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-300">
+                                        <option value="Routine">Rutin / Pembersihan</option>
+                                        <option value="Repair">Perbaikan Fisik</option>
+                                        <option value="Software">Update Software</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="bg-emerald-600 text-white font-bold py-3 px-10 rounded-xl">Jadwalkan
+                                Perawatan</button>
+                        </form>
+                    </div>
+
+                    <!-- PAGE EVIDENCE & TEAM -->
+                    <div id="page-evidence" class="page-content hidden p-10 text-center text-slate-500">Evidence Module
+                        is coming soon.</div>
+                    <div id="page-team" class="page-content hidden p-10 text-center text-slate-500">Team Management is
+                        coming soon.</div>
+                    <div id="page-kpi" class="page-content hidden p-10 text-center text-slate-500">Performance KPI
+                        Module is coming soon.</div>
+                    <div id="page-vendor" class="page-content hidden p-10 text-center text-slate-500">Vendor Management
+                        is coming soon.</div>
+                    <div id="page-status" class="page-content hidden p-10 text-center text-slate-500">System Status is
+                        coming soon.</div>
+                    <div id="page-pica" class="page-content hidden p-10 text-center text-slate-500">PICA Module is
+                        coming soon.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<div class="flex flex-col gap-6">
+    <!-- Welcome Banner -->
+    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-800 mb-1">Welcome back, Desktop Support Engineer</h1>
+            <p class="text-slate-500 text-sm">Here is the latest status of your IT DSE Operations.</p>
+        </div>
+        <!-- System Online Indicator -->
+        <div class="hidden md:flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-full">
+            <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+            <span class="text-xs font-bold text-slate-600 uppercase tracking-widest">System Online</span>
+        </div>
+    </div>
+
+    <!-- Top Stats Row (3 Columns) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Stat Card 1 -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-5 transition-transform hover:-translate-y-1 duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Total Assets</p>
+                <h3 class="text-3xl font-extrabold text-slate-800 leading-none">181</h3>
+                <p class="text-[10px] text-slate-500 mt-1">IT devices in system</p>
+            </div>
+        </div>
+
+        <!-- Stat Card 2 -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-5 transition-transform hover:-translate-y-1 duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active Maintenance</p>
+                <h3 class="text-3xl font-extrabold text-slate-800 leading-none">3</h3>
+                <p class="text-[10px] text-slate-500 mt-1">Pending PM tasks</p>
+            </div>
+        </div>
+
+        <!-- Stat Card 3 -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-5 transition-transform hover:-translate-y-1 duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pending PM (Juni)</p>
+                <h3 class="text-3xl font-extrabold text-slate-800 leading-none">3</h3>
+                <p class="text-[10px] text-slate-500 mt-1">For the current month</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Stats Row (3/3/3 format approx) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Simple Stat Cards -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Assets In Use</p>
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-md">Active</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-slate-800">176</h3>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Assets In Stok</p>
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-md">Available</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-slate-800">4</h3>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Total Breakdown</p>
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-md">Urgent</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-slate-800">1</h3>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Expiring Warranty -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Expiring Warranty</p>
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-md">Action Req.</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-slate-800">0</h3>
+        </div>
+
+        <!-- AVG Weekly PA -->
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300">
+            <div class="flex justify-between items-start mb-4">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">AVG Weekly PA</p>
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded-md">Overall</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-slate-800">100.00%</h3>
+        </div>
+    </div>
+</div>

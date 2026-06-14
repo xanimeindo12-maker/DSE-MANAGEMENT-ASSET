@@ -1,0 +1,169 @@
+<div class="h-full bg-white p-5 flex flex-col font-sans relative">
+    <!-- Header Sidebar -->
+    <div class="mb-10 px-2 flex items-center gap-3">
+        <!-- Logo Hexagon -->
+        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+        </div>
+        <div>
+            <h2 class="text-slate-800 font-bold text-sm tracking-tight leading-tight">
+                IT COMMAND <br> CENTER
+            </h2>
+            <p class="text-[9px] uppercase tracking-widest text-slate-400 font-semibold mt-0.5">Operational Hub</p>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-1 space-y-2 overflow-y-auto pr-2 custom-scrollbar" id="sidebar-nav">
+        <!-- General Section -->
+        <button id="btn-dashboard"
+            class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-500 hover:bg-slate-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span class="text-sm truncate">Dashboard Overview</span>
+        </button>
+
+        <!-- Master Data Category -->
+        <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-6">Master Data</p>
+        <div>
+            <button
+                class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-500 hover:bg-slate-50"
+                data-target="submenu-inventory">
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span class="text-sm truncate">Inventory & Assets</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="chevron-icon h-4 w-4 transition-transform duration-200 transform flex-shrink-0" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div id="submenu-inventory" class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
+                <button id="btn-inventory"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Semua
+                    Aset List</button>
+                <button id="btn-accessories"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Suku
+                    Cadang/Part</button>
+                <button id="btn-borrowings"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Peminjaman
+                    Aset</button>
+            </div>
+        </div>
+
+        <!-- Operational Category -->
+        <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Operational</p>
+        <div>
+            <button
+                class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-500 hover:bg-slate-50 group"
+                data-target="submenu-operational">
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span class="text-sm truncate">Operational Activity</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="chevron-icon h-4 w-4 transition-transform duration-200 flex-shrink-0" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div id="submenu-operational" class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
+                <button id="btn-dailylogs"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Daily
+                    Activity Logs</button>
+                <button id="btn-maintenance"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Jadwal
+                    Maintenance</button>
+                <button id="btn-kpi"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">PA
+                    Performance KPI</button>
+            </div>
+        </div>
+
+        <!-- Reports Category -->
+        <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Reports</p>
+        <div>
+            <button
+                class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-500 hover:bg-slate-50 group"
+                data-target="submenu-report">
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span class="text-sm truncate">Report Activity</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="chevron-icon h-4 w-4 transition-transform duration-200 flex-shrink-0" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div id="submenu-report" class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
+                <button id="btn-evidence"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Evidence
+                    Activity</button>
+                <button id="btn-vendor"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Populasi
+                    Vendor Unit</button>
+                <button id="btn-status"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Status
+                    Sebaran Unit</button>
+                <button id="btn-pica"
+                    class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-indigo-600 hover:bg-indigo-50 transition-colors">PICA</button>
+            </div>
+        </div>
+
+        <!-- Admin Category -->
+        <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Admin</p>
+        <button id="btn-team"
+            class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-500 hover:bg-slate-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="text-sm truncate">Kelola Tim</span>
+        </button>
+    </nav>
+
+    <!-- Footer Profil User -->
+    <div class="mt-4 pt-4 border-t border-slate-100 flex-shrink-0">
+        <div class="flex items-center justify-between px-2 py-2 bg-slate-50 rounded-2xl border border-slate-100">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <div
+                    class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                    A
+                </div>
+                <div class="overflow-hidden">
+                    <p class="text-[11px] font-bold text-slate-800 truncate">Administrator</p>
+                    <p class="text-[9px] text-slate-500 font-bold truncate uppercase tracking-widest">ADMINISTRATOR</p>
+                </div>
+            </div>
+            <button class="text-slate-400 hover:text-slate-700 transition-colors pr-2 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

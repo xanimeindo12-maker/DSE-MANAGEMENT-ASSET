@@ -1,0 +1,29 @@
+<form id="form-accessories" data-sheet="Accessories"
+    class="bg-white shadow-sm border border-slate-200 rounded-2xl overflow-hidden">
+    <div class="p-8 space-y-6">
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Komponen / Aksesoris</label>
+                <input type="text" name="item_name" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah (Pcs/Unit)</label>
+                <input type="number" name="quantity" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+            </div>
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Status Stok</label>
+            <select name="stock_status"
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%23475569%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')] bg-[length:20px] bg-[right_1rem_center] bg-no-repeat">
+                <option value="Available">Tersedia</option>
+                <option value="Low">Menipis</option>
+                <option value="Empty">Habis</option>
+            </select>
+        </div>
+    </div>
+    <div class="bg-slate-50 p-8 border-t border-slate-200 text-right"><button type="submit"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-10 rounded-xl transition-all shadow-lg shadow-emerald-200">Simpan
+            Inventaris</button></div>
+</form>
