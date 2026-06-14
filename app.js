@@ -117,38 +117,27 @@ async function switchPage(viewName) {
 
     // Update Sidebar Navigation Active State
     document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-md');
+        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20');
         btn.classList.add('text-slate-400', 'hover:bg-slate-50');
         const svg = btn.querySelector('svg');
-        if (svg) svg.classList.remove('text-white', 'animate-bounce-small');
+        if (svg) svg.classList.remove('text-white', 'animate-bounce-small', 'text-teal-400');
     });
 
     document.querySelectorAll('.nav-sub-btn').forEach(btn => {
         btn.classList.remove('text-indigo-600', 'bg-indigo-50', 'font-bold');
-        btn.classList.add('text-slate-500', 'hover:text-indigo-600', 'hover:bg-indigo-50');
+        btn.classList.add('text-slate-400', 'hover:bg-slate-800');
     });
 
     const activeBtn = document.getElementById(`btn-${viewName}`);
     if (activeBtn) {
         if (activeBtn.classList.contains('nav-btn')) {
-            activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-md', 'font-bold');
+            activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-lg', 'shadow-teal-600/20', 'font-semibold');
             activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-50');
             const svg = activeBtn.querySelector('svg');
             if (svg) svg.classList.add('text-white', 'animate-bounce-small');
         } else if (activeBtn.classList.contains('nav-sub-btn')) {
-            activeBtn.classList.add('text-indigo-600', 'bg-indigo-50', 'font-bold');
-            activeBtn.classList.remove('text-slate-500', 'hover:text-indigo-600', 'hover:bg-indigo-50');
-
-            // Auto-expand parent group if closed
-            const submenu = activeBtn.closest('[id^="submenu-"]');
-            if (submenu && !submenu.classList.contains('open')) {
-                submenu.classList.add('open');
-                const groupBtn = document.querySelector(`[data-target="${submenu.id}"]`);
-                if (groupBtn) {
-                    const chevron = groupBtn.querySelector('.chevron-icon');
-                    if (chevron) chevron.classList.add('rotate-180');
-                }
-            }
+            activeBtn.classList.add('bg-teal-600', 'text-white', 'font-semibold');
+            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800');
         }
     }
 }
