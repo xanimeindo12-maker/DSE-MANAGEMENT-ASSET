@@ -23,7 +23,7 @@
         <nav class="flex-1 space-y-2 overflow-y-auto pr-2 custom-scrollbar" id="sidebar-nav">
             <!-- General Section -->
             <button id="btn-dashboard"
-                class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white">
+                class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-600 hover:bg-slate-50">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,10 +33,10 @@
             </button>
 
             <!-- Master Data Category -->
-            <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-6">Master Data</p>
+            <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-6">Master Data</p>
             <div>
                 <button
-                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white"
+                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-600 hover:bg-slate-50"
                     data-target="submenu-inventory">
                     <div class="flex items-center space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
@@ -53,24 +53,24 @@
                     </svg>
                 </button>
                 <div id="submenu-inventory"
-                    class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-800 pl-4">
+                    class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
                     <button id="btn-inventory"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Semua
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Semua
                         Aset List</button>
                     <button id="btn-accessories"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Suku
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Suku
                         Cadang/Part</button>
                     <button id="btn-borrowings"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Peminjaman
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Peminjaman
                         Aset</button>
                 </div>
             </div>
 
             <!-- Operational Category -->
-            <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Operational</p>
+            <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4">Operational</p>
             <div>
                 <button
-                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white group"
+                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-600 hover:bg-slate-50 group"
                     data-target="submenu-operational">
                     <div class="flex items-center space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
@@ -87,24 +87,24 @@
                     </svg>
                 </button>
                 <div id="submenu-operational"
-                    class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-800 pl-4">
+                    class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
                     <button id="btn-dailylogs"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Daily
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Daily
                         Activity Logs</button>
                     <button id="btn-maintenance"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Jadwal
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Jadwal
                         Maintenance</button>
                     <button id="btn-kpi"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">PA
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">PA
                         Performance KPI</button>
                 </div>
             </div>
 
             <!-- Reports Category -->
-            <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Reports</p>
+            <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4">Reports</p>
             <div>
                 <button
-                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white group"
+                    class="nav-group-btn w-full flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-600 hover:bg-slate-50 group"
                     data-target="submenu-report">
                     <div class="flex items-center space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none"
@@ -120,25 +120,25 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                <div id="submenu-report" class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-800 pl-4">
+                <div id="submenu-report" class="submenu-animate mt-1 ml-4 space-y-1 border-l-2 border-slate-100 pl-4">
                     <button id="btn-evidence"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Evidence
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Evidence
                         Activity</button>
                     <button id="btn-vendor"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Populasi
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Populasi
                         Vendor Unit</button>
                     <button id="btn-status"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">Status
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">Status
                         Sebaran Unit</button>
                     <button id="btn-pica"
-                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-400 font-medium rounded-full hover:text-white hover:bg-slate-800 transition-all">PICA</button>
+                        class="nav-sub-btn w-full text-left py-2 px-4 text-sm text-slate-500 font-medium rounded-full hover:text-violet-600 hover:bg-slate-50 transition-all">PICA</button>
                 </div>
             </div>
 
             <!-- Admin Category -->
-            <p class="px-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 mt-4">Admin</p>
+            <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4">Admin</p>
             <button id="btn-team"
-                class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white">
+                class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 text-slate-600 hover:bg-slate-50">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -149,15 +149,14 @@
         </nav>
 
         <!-- Footer Profil User -->
-        <div class="mt-4 pt-4 border-t border-slate-800 flex-shrink-0">
+        <div class="mt-4 pt-5 border-t border-slate-100 flex-shrink-0">
             <div class="flex items-center space-x-3 px-2">
                 <div
-                    class="w-10 h-10 rounded-full bg-slate-800 text-teal-400 flex items-center justify-center font-bold text-sm flex-shrink-0 border border-slate-700 shadow-inner">
-                    AD
-                </div>
+                    class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center font-bold text-sm border border-violet-200">
+                    AD</div>
                 <div class="overflow-hidden">
-                    <p class="text-[11px] font-bold text-white truncate">BTSJKOPCU22003 - ANDIKA DWI SAPUTRA</p>
-                    <p class="text-[9px] text-slate-400 font-medium truncate uppercase tracking-widest">IT Admin &
+                    <p class="text-[11px] font-bold text-slate-800 truncate">BTSJKOPCU22003 - ANDIKA DWI SAPUTRA</p>
+                    <p class="text-[9px] text-slate-500 font-medium truncate uppercase tracking-widest">IT Admin &
                         Support / PM</p>
                 </div>
             </div>
