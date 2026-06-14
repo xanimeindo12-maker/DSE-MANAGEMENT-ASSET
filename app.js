@@ -11,24 +11,31 @@ const CF_WORKER_URL = "https://management-asset-bouncer.xanimeindo12.workers.dev
 const API_KEY = "DSE-Aset-Project-Leannixx";
 
 /**
- * Load HTML component into a container with Anti-Cache
+ * Load HTML component into a container (GitHub Pages Adaptive)
  */
-async function loadComponent(targetContainerId, fileUrl) {
+async function loadComponent(targetContainerId, fileName) {
     try {
-        // Menambahkan timestamp unik (?v=angka) agar browser dipaksa mengambil file paling baru dari disk
-        const cacheBuster = `${fileUrl}?v=${new Date().getTime()}`;
-        const response = await fetch(cacheBuster);
+        // 1. Dapatkan lokasi direktori saat ini (mengatasi masalah sub-folder repo GitHub)
+        const currentPath = window.location.pathname;
+        const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
 
-        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        // 2. Gabungkan jalur dengan nama file dan berikan suntikan anti-cache
+        const finalUrl = `${window.location.origin}${basePath}${fileName}?v=${new Date().getTime()}`;
+
+        const response = await fetch(finalUrl);
+        if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status} saat memuat ${fileName}`);
+
         const htmlText = await response.text();
-
         const container = document.getElementById(targetContainerId);
+
         if (container) {
             container.innerHTML = htmlText;
-            console.log(`Successfully loaded: ${fileUrl}`);
+            console.log(`Successfully loaded component: ${fileName}`);
+        } else {
+            console.error(`Gagal menyuntikkan data, ID container [${targetContainerId}] tidak ada di index.html`);
         }
     } catch (error) {
-        console.error(`Gagal memuat komponen [${fileUrl}]:`, error);
+        console.error(`Eror fatal pada loader komponen [${fileName}]:`, error);
     }
 }
 
