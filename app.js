@@ -7,7 +7,7 @@ console.log("=> JS UTAMA BERHASIL DIPANGGIL BROWSER <=");
 // =========================================================================
 // 1. CONFIGURATION
 // =========================================================================
-const CF_WORKER_URL = "https://management-asset-bouncer.xanimeindo12.workers.dev/";
+const CF_WORKER_URL = "https://management-asset-bouncer.xanimeindo12.workers.dev";
 const API_KEY = "AKfycbzRi0z4-UEYM0TsynJJlzaVPFZApB0snXk6RPM9yuAFM5sy9VktV332-_n5M49pAJL2";
 
 /**
