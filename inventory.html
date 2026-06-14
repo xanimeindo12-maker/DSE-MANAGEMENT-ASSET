@@ -208,80 +208,95 @@
     let inventoryData = [];
 
     async function fetchInventoryData() {
-        const tbody = document.querySelector("#inventory-table tbody");
+        const tbody = document.querySelector("#inventory-table tbody") || document.getElementById("inventory-data");
 
-        // Tampilkan Loading State saat fetch berjalan
         if (tbody) {
-            tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8 text-slate-400 font-medium"><i class="animate-spin mr-2">⏳</i> Mengsinkronkan dengan Database...</td></tr>';
+            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-slate-400 font-medium animate-pulse"><i class="animate-spin mr-2">⏳</i> Mengsinkronkan dengan Database...</td></tr>`;
         }
 
         try {
-            const response = await fetch(`${CF_WORKER_URL}?action=get_inventory`, {
-                headers: { "X-API-KEY": API_KEY }
+            // Menggunakan URL Cloudflare Worker dari konfigurasi global app.js dengan Cache Buster
+            const response = await fetch(`${CF_WORKER_URL}?action=get_inventory&v=${new Date().getTime()}`, {
+                method: "GET",
+                headers: {
+                    "X-API-KEY": API_KEY,
+                    "Content-Type": "application/json"
+                }
             });
+
+            if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
             const result = await response.json();
 
-            if (result.status === 'success') {
-                inventoryData = result.data;
-                renderTable(inventoryData);
-                updateStats(inventoryData);
-            } else {
-                throw new Error(result.message);
-            }
+            // Memastikan data yang didapat berbentuk Array sebelum dirender
+            const assets = Array.isArray(result) ? result : (result.data || []);
+            inventoryData = assets;
+
+            renderInventoryTable(assets);
+            updateStats(assets);
+
         } catch (error) {
+            console.error("⚠️ Gagal sinkronisasi API Cloudflare:", error);
             if (tbody) {
                 tbody.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-rose-500 font-semibold">⚠️ Gagal terhubung ke database: ${error.message}</td></tr>`;
             }
         }
     }
 
-    function renderTable(data) {
-        const tbody = document.querySelector("#inventory-table tbody");
+    function renderInventoryTable(assets) {
+        const tbody = document.querySelector("#inventory-table tbody") || document.getElementById("inventory-data");
         const info = document.getElementById('pagination-info');
-
         if (!tbody) return;
 
-        if (!data || data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-12 text-slate-400 font-medium">Tidak ada data ditemukan.</td></tr>`;
+        tbody.innerHTML = ""; // Bersihkan loading state
+
+        if (!assets || assets.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-slate-400 font-medium">Tidak ada data aset ditemukan di database.</td></tr>`;
             if (info) info.innerText = `Menampilkan 0 Aset`;
             return;
         }
 
-        tbody.innerHTML = data.map((item, index) => {
-            // Pemetaan properti disesuaikan dengan header Google Sheets (CamelCase)
-            const statusClass = getStatusStyle(item.State);
-            return `
-                <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${index + 1}</td>
-                    <td class="py-4 px-6 text-sm text-slate-800 font-bold">${item.HostName || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.SerialNumber || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.AssignedTo || 'N/A'}</td>
-                    <td class="py-4 px-6 text-sm">
-                        <span class="px-3 py-1 text-xs font-bold rounded-full inline-flex items-center justify-center w-max shadow-sm ${statusClass}">${item.State || 'Unknown'}</span>
-                    </td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Department || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Lokasi || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-teal-600 font-bold italic">${item.WarrantyExpiry || '-'}</td>
-                    <td class="py-4 px-6 text-sm text-center">
-                        <div class="flex items-center justify-center gap-2">
-                            <button onclick="editAsset('${item.ID}')" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+        assets.forEach((item, index) => {
+            const tr = document.createElement("tr");
+            tr.className = "border-b border-slate-100 hover:bg-slate-50/60 transition-colors group";
+
+            // Mapping status badge berbentuk pil bulat sempurna (Muted Pastel Style)
+            let statusClass = "bg-slate-50 text-slate-700 border-slate-100";
+            const currentStatus = (item.State || "").toLowerCase();
+
+            if (currentStatus === "ready" || currentStatus === "in use" || currentStatus === "active") {
+                statusClass = "bg-emerald-50 text-emerald-700 border-emerald-200";
+            } else if (currentStatus === "maintenance" || currentStatus === "pending") {
+                statusClass = "bg-amber-50 text-amber-700 border-amber-200";
+            } else if (currentStatus === "broken" || currentStatus === "disposal") {
+                statusClass = "bg-rose-50 text-rose-700 border-rose-200";
+            }
+
+            // Struktur kolom data menyesuaikan 9 header di inventory.html
+            tr.innerHTML = `
+                <td class="py-4 px-6 text-sm text-slate-600 font-medium">${index + 1}</td>
+                <td class="py-4 px-6 text-sm font-bold text-slate-800">${item.HostName || "-"}</td>
+                <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.SerialNumber || "-"}</td>
+                <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.AssignedTo || "N/A"}</td>
+                <td class="py-4 px-6 text-sm">
+                    <span class="px-3 py-1 text-[10px] font-bold rounded-full border inline-flex items-center justify-center uppercase tracking-wider ${statusClass}">
+                        ${item.State || "Unknown"}
+                    </span>
+                </td>
+                <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Department || "-"}</td>
+                <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.Lokasi || "-"}</td>
+                <td class="py-4 px-6 text-sm text-teal-600 font-bold italic group-hover:text-teal-700">${item.WarrantyExpiry || "-"}</td>
+                <td class="py-4 px-6 text-sm text-center">
+                    <div class="flex items-center justify-center gap-2">
+                        <button onclick="editAsset('${item.ID}')" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                        </button>
+                    </div>
+                </td>
             `;
-        }).join('');
+            tbody.appendChild(tr);
+        });
 
-        if (info) info.innerText = `Menampilkan ${data.length} Aset`;
-    }
-
-    function getStatusStyle(state) {
-        const s = state?.toLowerCase();
-        if (s === 'ready' || s === 'in use') return 'px-3 py-1 text-xs font-bold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 inline-flex items-center';
-        if (s === 'maintenance' || s === 'pending') return 'px-3 py-1 text-xs font-bold rounded-full bg-amber-50 text-amber-700 border border-amber-100 inline-flex items-center';
-        if (s === 'broken' || s === 'disposal') return 'px-3 py-1 text-xs font-bold rounded-full bg-rose-50 text-rose-700 border border-rose-100 inline-flex items-center';
-        return 'bg-slate-50 text-slate-600 border border-slate-100';
+        if (info) info.innerText = `Menampilkan ${assets.length} Aset`;
     }
 
     function updateStats(data) {
@@ -294,7 +309,7 @@
 
     function toggleModal(modalId) {
         const modal = document.getElementById(modalId);
-        modal.classList.toggle('hidden');
+        if (modal) modal.classList.toggle('hidden');
     }
 
     // Search Listener
@@ -307,7 +322,7 @@
                 item.SerialNumber?.toLowerCase().includes(query) ||
                 item.AssignedTo?.toLowerCase().includes(query)
             );
-            renderTable(filtered);
+            renderInventoryTable(filtered);
         });
     }
 
