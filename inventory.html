@@ -5,7 +5,7 @@
         <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex justify-between items-center">
             <div class="flex flex-col gap-1">
                 <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Aset</span>
-                <span class="text-2xl font-bold text-slate-800 tracking-tight">181</span>
+                <span id="stat-total-aset" class="text-2xl font-bold text-slate-800 tracking-tight">0</span>
                 <div
                     class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full inline-flex items-center gap-1 mt-1 w-max">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
@@ -28,7 +28,7 @@
         <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex justify-between items-center">
             <div class="flex flex-col gap-1">
                 <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Ready / In Use</span>
-                <span class="text-2xl font-bold text-slate-800 tracking-tight">176</span>
+                <span id="stat-ready-aset" class="text-2xl font-bold text-slate-800 tracking-tight">0</span>
                 <div
                     class="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full inline-flex items-center gap-1 mt-1 w-max">
                     Stabil</div>
@@ -46,7 +46,7 @@
         <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex justify-between items-center">
             <div class="flex flex-col gap-1">
                 <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Maintenance</span>
-                <span class="text-2xl font-bold text-slate-800 tracking-tight">4</span>
+                <span id="stat-maintenance-aset" class="text-2xl font-bold text-slate-800 tracking-tight">0</span>
                 <div
                     class="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full inline-flex items-center gap-1 mt-1 w-max">
                     Perlu Atensi</div>
@@ -65,7 +65,7 @@
         <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex justify-between items-center">
             <div class="flex flex-col gap-1">
                 <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Broken / Disposal</span>
-                <span class="text-2xl font-bold text-slate-800 tracking-tight">1</span>
+                <span id="stat-broken-aset" class="text-2xl font-bold text-slate-800 tracking-tight">0</span>
                 <div
                     class="text-xs font-medium text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full inline-flex items-center gap-1 mt-1 w-max">
                     Critical</div>
@@ -150,39 +150,10 @@
                     </tr>
                 </thead>
                 <tbody id="inventory-table-body">
-                    <!-- Row 1 -->
-                    <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
-                        <td class="py-4 px-6 text-sm text-slate-400 font-medium">1</td>
-                        <td class="py-4 px-6 text-sm text-slate-800 font-semibold">IT-PC-TAF01</td>
-                        <td class="py-4 px-6 text-sm text-slate-600 font-medium">SN-9812739218</td>
-                        <td class="py-4 px-6 text-sm text-slate-600 font-medium">Taufik</td>
-                        <td class="py-4 px-6 text-sm">
-                            <span
-                                class="px-3 py-1 text-xs font-bold rounded-full inline-flex items-center justify-center w-max shadow-sm bg-emerald-50 text-emerald-700 border border-emerald-100">IN
-                                USE</span>
-                        </td>
-                        <td class="py-4 px-6 text-sm text-slate-600 font-medium">IT Dept</td>
-                        <td class="py-4 px-6 text-sm text-slate-600 font-medium">Gedung A R.4</td>
-                        <td class="py-4 px-6 text-sm text-teal-600 font-bold italic">2027-12-14</td>
-                        <td class="py-4 px-6 text-sm text-center">
-                            <div class="flex items-center justify-center gap-2">
-                                <button
-                                    class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all"><svg
-                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg></button>
-                                <button
-                                    class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-amber-50 hover:text-amber-600 transition-all"><svg
-                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg></button>
-                            </div>
+                    <!-- Data will be loaded via JavaScript -->
+                    <tr>
+                        <td colspan="9" class="text-center py-12 text-slate-400 animate-pulse font-medium">
+                            Mengsinkronkan dengan Database...
                         </td>
                     </tr>
                 </tbody>
@@ -191,17 +162,139 @@
     </div>
 
     <!-- Pagination Area -->
-    <div class="flex items-center justify-between px-2">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Menampilkan 1 - 10 dari 181 Aset</p>
+    <div id="pagination-container" class="flex items-center justify-between px-2">
+        <p id="pagination-info" class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Menampilkan 0 Aset
+        </p>
         <div class="flex gap-2">
             <button
                 class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-400 hover:bg-slate-50 transition-all">Previous</button>
             <button
                 class="px-4 py-2 bg-teal-600 text-white rounded-xl text-xs font-bold shadow-md shadow-teal-200">1</button>
             <button
-                class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">2</button>
-            <button
                 class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-400 hover:bg-slate-50 transition-all">Next</button>
         </div>
     </div>
 </div>
+
+<!-- MODAL ADD ASSET -->
+<div id="modal-add-asset"
+    class="hidden fixed inset-0 z-[99] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-2xl rounded-[32px] shadow-2xl overflow-hidden border border-slate-100">
+        <div class="p-8 border-b border-slate-100 flex justify-between items-center">
+            <h2 class="text-xl font-bold text-slate-800 tracking-tight">Form Tambah Perangkat Baru</h2>
+            <button onclick="toggleModal('modal-add-asset')"
+                class="text-slate-400 hover:text-slate-600 transition-colors text-2xl">&times;</button>
+        </div>
+        <div class="p-8">
+            <!-- Reuse existing form listeners by including the form here or pointing to action -->
+            <p class="text-slate-500 text-sm mb-6">Silakan lengkapi data teknis perangkat untuk didaftarkan ke sistem.
+            </p>
+            <div id="modal-form-placeholder">
+                <!-- Form logic will be handled via dynamic injection if needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let inventoryData = [];
+
+    async function fetchInventoryData() {
+        const tbody = document.getElementById('inventory-table-body');
+        try {
+            const response = await fetch(`${CF_WORKER_URL}?action=get_inventory`, {
+                headers: { "X-API-KEY": API_KEY }
+            });
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                inventoryData = result.data;
+                renderTable(inventoryData);
+                updateStats(inventoryData);
+            } else {
+                throw new Error(result.message);
+            }
+        } catch (error) {
+            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-12 text-red-500 font-medium">Gagal memuat data: ${error.message}</td></tr>`;
+        }
+    }
+
+    function renderTable(data) {
+        const tbody = document.getElementById('inventory-table-body');
+        const info = document.getElementById('pagination-info');
+
+        if (data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" class="text-center py-12 text-slate-400 font-medium">Tidak ada data ditemukan.</td></tr>`;
+            info.innerText = `Menampilkan 0 Aset`;
+            return;
+        }
+
+        tbody.innerHTML = data.map((item, index) => {
+            const statusClass = getStatusStyle(item.state);
+            return `
+                <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
+                    <td class="py-4 px-6 text-sm text-slate-400 font-medium">${index + 1}</td>
+                    <td class="py-4 px-6 text-sm text-slate-800 font-semibold">${item.host_name || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.serial_number || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.assigned_to || 'N/A'}</td>
+                    <td class="py-4 px-6 text-sm">
+                        <span class="px-3 py-1 text-xs font-bold rounded-full inline-flex items-center justify-center w-max shadow-sm ${statusClass}">${item.state}</span>
+                    </td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.department || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-slate-600 font-medium">${item.location || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-teal-600 font-bold italic">${item.warranty || '-'}</td>
+                    <td class="py-4 px-6 text-sm text-center">
+                        <div class="flex items-center justify-center gap-2">
+                            <button onclick="editAsset('${item.id}')" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:bg-teal-50 hover:text-teal-600 transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+
+        info.innerText = `Menampilkan ${data.length} Aset`;
+    }
+
+    function getStatusStyle(state) {
+        const s = state?.toLowerCase();
+        if (s === 'ready' || s === 'in use') return 'bg-emerald-50 text-emerald-700 border border-emerald-100';
+        if (s === 'maintenance' || s === 'pending') return 'bg-amber-50 text-amber-700 border border-amber-100';
+        if (s === 'broken' || s === 'disposal') return 'bg-rose-50 text-rose-700 border border-rose-100';
+        return 'bg-slate-50 text-slate-600 border border-slate-100';
+    }
+
+    function updateStats(data) {
+        document.getElementById('stat-total-aset').innerText = data.length;
+        document.getElementById('stat-ready-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'in use' || i.state?.toLowerCase() === 'ready').length;
+        document.getElementById('stat-maintenance-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'maintenance').length;
+        document.getElementById('stat-broken-aset').innerText = data.filter(i => i.state?.toLowerCase() === 'broken').length;
+    }
+
+    function toggleModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.toggle('hidden');
+    }
+
+    // Search Listener
+    document.getElementById('inventory-search').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = inventoryData.filter(item =>
+            item.host_name?.toLowerCase().includes(query) ||
+            item.serial_number?.toLowerCase().includes(query) ||
+            item.assigned_to?.toLowerCase().includes(query)
+        );
+        renderTable(filtered);
+    });
+
+    // Action bar buttons (Injected by app.js)
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('button')?.innerText.includes('TAMBAH PERANGKAT')) {
+            toggleModal('modal-add-asset');
+        }
+    });
+
+    // Initial Load
+    fetchInventoryData();
+</script>
