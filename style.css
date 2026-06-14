@@ -60,19 +60,19 @@ body {
     opacity: 1;
 }
 
-/* Subtle Teal Glow Animation */
-@keyframes glow-teal {
+/* Subtle Lavender Glow Animation */
+@keyframes glow-lavender {
 
     0%,
     100% {
-        box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.2), 0 4px 6px -2px rgba(13, 148, 136, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(167, 139, 250, 0.2), 0 4px 6px -2px rgba(167, 139, 250, 0.1);
     }
 
     50% {
-        box-shadow: 0 0 20px 2px rgba(13, 148, 136, 0.5);
+        box-shadow: 0 0 20px 2px rgba(167, 139, 250, 0.5);
     }
 }
 
-.animate-glow-teal {
-    animation: glow-teal 3s infinite ease-in-out;
+.animate-glow-lavender {
+    animation: glow-lavender 3s infinite ease-in-out;
 }
